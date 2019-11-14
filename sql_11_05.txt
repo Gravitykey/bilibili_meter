@@ -1,0 +1,149 @@
+/*请检查索引项是否正确，以及再次确认可以为空的字段*/
+drop database if exists bilibili_meter;
+create database bilibili_meter;
+use bilibili_meter;
+
+create table web_users(
+`id` varchar(50) not null,
+`name` varchar(50) not null,
+`passwd` varchar(50) not null,
+`admin` boolean not null,
+`created_at` bigint not null,
+primary key (`id`)
+) engine=innodb default charset=utf8mb4;
+
+create table watched_users(
+`id` bigint not null,
+`name` varchar(30) not null,
+`sex` varchar(10) not null,
+`face` varchar(150) not null,
+`sign` varchar(100) not null,
+`hide` boolean not null,
+primary key (`id`)
+) engine=innodb default charset=utf8mb4;
+
+create table watched_videos(
+`id` bigint not null,
+`owner_mid` bigint not null,
+`tid` bigint not null,
+`tname` varchar(20) not null,
+`pic` varchar(150) not null,
+`title` varchar(100) not null,
+`desc` varchar(300) not null,
+`pubdate` bigint not null,
+`hide` boolean not null,
+primary key (`id`)
+) engine=innodb default charset=utf8mb4;
+
+create table tasks(
+`id` bigint not null,
+`period` bigint not null,
+`phase` bigint not null,
+`type_` varchar(30) not null,
+`param` varchar(50) not null,
+`enable` boolean not null,
+`creat_time` bigint not null,
+primary key (`id`)
+) engine=innodb default charset=utf8mb4;
+
+create table task_status(
+`id` bigint not null,
+`last_sub_time` bigint not null,
+`assigned_time` bigint ,
+`assigned_to` varchar(20) ,
+primary key (`id`)
+) engine=innodb default charset=utf8mb4;
+
+create table task_failed(
+`id` bigint not null,
+`task_id` bigint not null,
+`fail_time` bigint not null,
+`fail_type` varchar(10) not null,
+`worker` varchar(20) not null,
+primary key (`id`)
+) engine=innodb default charset=utf8mb4;
+
+create table total_user(
+`id` bigint not null,
+`total` bigint not null,
+primary key (`id`)
+) engine=innodb default charset=utf8mb4;
+INSERT INTO `total_user` (`id`,`total`)VALUES (1,0);
+
+create table total_video(
+`id` bigint not null,
+`total` bigint not null,
+primary key (`id`)
+) engine=innodb default charset=utf8mb4;
+INSERT INTO `total_video` (`id`,`total`)VALUES (1,0);
+
+create table total_task(
+`id` bigint not null,
+`total` bigint not null,
+primary key (`id`)
+) engine=innodb default charset=utf8mb4;
+INSERT INTO `total_task` (`id`,`total`)VALUES (1,0);
+
+create table worker_status(
+`id` bigint not null,
+`worker_name` varchar(20) not null,
+`date` varchar(20) not null,
+`last_query_time` bigint not null,
+`last_sub_time` bigint not null,
+`day_submit_count` bigint not null,
+key `idx_date` (`date`),
+primary key (`id`)
+) engine=innodb default charset=utf8mb4;
+
+create table ItemBase(
+`id` bigint not null,
+primary key (`id`)
+) engine=innodb default charset=utf8mb4;
+
+create table items_online(
+`id` bigint not null,
+`task_id` bigint not null,
+`time` bigint not null,
+`d_web_online` bigint not null,
+`d_play_online` bigint not null,
+`d_all_count` bigint not null,
+`d_region_count` varchar(500) not null,
+primary key (`id`)
+) engine=innodb default charset=utf8mb4;
+
+create table items_video_stat(
+`id` bigint not null,
+`task_id` bigint not null,
+`time` bigint not null,
+`d_aid` bigint not null,
+`d_view` bigint not null,
+`d_danmaku` bigint not null,
+`d_reply` bigint not null,
+`d_favorite` bigint not null,
+`d_coin` bigint not null,
+`d_share` bigint not null,
+`d_like` bigint not null,
+key `idx_d_aid` (`d_aid`),
+primary key (`id`)
+) engine=innodb default charset=utf8mb4;
+
+create table items_up_stat(
+`id` bigint not null,
+`task_id` bigint not null,
+`time` bigint not null,
+`d_mid` bigint not null,
+`d_total_video_view` bigint not null,
+`d_total_article_view` bigint not null,
+`d_following` bigint not null,
+`d_follower` bigint not null,
+key `idx_d_mid` (`d_mid`),
+primary key (`id`)
+) engine=innodb default charset=utf8mb4;
+
+create table items_region_activity(
+`id` bigint not null,
+`task_id` bigint not null,
+`time` bigint not null,
+`d_json` varchar(500) not null,
+primary key (`id`)
+) engine=innodb default charset=utf8mb4;

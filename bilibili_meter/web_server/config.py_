@@ -1,0 +1,37 @@
+'''
+@Date: 2019-08-16 13:43:59
+@LastEditors: Gravitykey
+@LastEditTime: 2019-08-23 16:43:01
+'''
+
+# ========== FOR SCRAPER =============
+
+
+HOST = 'http://127.0.0.1:8080'
+URLS = {
+    'GET_TASK':'/test/gettask',
+    'SUBMIT_TASK':'/test/submittask',
+    'SUBMIT_FAILURE':'/submit_failure',
+}
+SCRAPER_NAME = 'HOME_LAPTOP'
+
+
+# ============ FOR AUTH ===============
+TOKEN = 'gk'
+_TOKEN_TIME_DIVIDER = 31
+
+
+# ============ FOR SERVER =============
+
+# DB///
+DB_HOST = 'localhost'
+DB_USER = 'root'
+# DB_PASSWORD = 'root'
+DB_PASSWORD = None
+DB_NAME = 'bilibili_meter'
+DB_PORT = 3306
+DB_CHARSET = 'utf8'
+
+# TASK///
+ASSIGNMENT_TIMELIMIT = 30
+ASSIGNMENT_COUNT = 10

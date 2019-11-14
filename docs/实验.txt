@@ -1,0 +1,15 @@
+attrs['__select__'] = 'select `%s`, %s from `%s`' % (
+            primaryKey, ','.join(escaped_fileds), tableName)
+			
+select `
+
+按日期查询记录
+MYSQL:FROM_UNIXTIME( `time`, '%Y-%m-%d' )
+把整型时间戳转化成 Y-M-D格式日期
+然后使用GROUP BY 
+因为ID使用的是整型，所以可以按ID排序，取其中最大的
+
+
+SQL 按日期获得
+验证可用：
+SELECT * FROM `items_video_stat` WHERE `id` IN ( SELECT MAX(`id`) FROM `items_video_stat` WHERE `d_aid`=67590648 GROUP BY FROM_UNIXTIME( `time`, '%Y-%m-%d' ) ) ORDER BY `id` DESC LIMIT 1000

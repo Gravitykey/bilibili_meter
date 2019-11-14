@@ -1,0 +1,13 @@
+from flask import Flask, jsonify, request
+
+app = Flask(__name__)
+
+_TYPE_MAP = {
+    # 'Online': ItemOnline,
+    # 'RegionActivity': ItemRegionActivity,
+    # 'VideoInfo': WatchedVideo,
+    # 'VideoStat': model.VideoStat,
+    # 'UpInfo': model.UpInfo,
+    # 'UpStat': model.UpStat,
+}
+
