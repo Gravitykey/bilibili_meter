@@ -46,6 +46,7 @@ def get_task_list():
     for t in ts:
         t['type'] = t['type_']
         t['enable'] = bool(t['enable'])
+        t['id'] = str(t['id']) # 如果不转换为字符串，js会因为数字位数太多转换时产生精度丢失
         del t['type_']
         # del t['id'] 不能去掉
 
